@@ -20,16 +20,32 @@ public class BattleMainEnemyUI : MonoBehaviour
     /// </summary>
     public UguiBar barHp = null;
 
+    /// <summary>
+    /// ñ⁄ïWçΩíË
+    /// </summary>
+    public Toggle select = null;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    /// <summary>
+    /// Ë˚é¶ödà éëêu
+    /// </summary>
+    /// <param name="enemy"></param>
+    public void ShowMaster(Master enemy)
     {
-        
+        if (enemy == null)
+        {
+            return;
+        }
+
+        imgIcon.sprite = Resources.Load<Sprite>(Config.RESOURCE_PROFESSION_PATH + enemy.professionId);
+        labName.text = enemy.name;
+        labHp.text = enemy.hp.ToString();
+        barHp.SetValue(enemy.hp, enemy.maxHp);
     }
 
-    // Update is called once per frame
-    void Update()
+    public System.Action<bool> onChangedSelect = null;
+
+    private void Start()
     {
-        
+        select.onValueChanged.AddListener((bool isOn) => { onChangedSelect?.Invoke(isOn); });
     }
 }

@@ -856,6 +856,10 @@ public class Master
     public int atk = 100;
     public int np = 0;
 
+    public int professionId = 0;
+    public string resourceHead = "";
+    public string resourceModel = "";
+
     public List<Card> cards = new List<Card>();
 
     public bool isAlive
@@ -947,23 +951,23 @@ public class BattleUnitTestCase
     public static Master[] GetPlayerTeam()
     {
         List<Master> playerTeam = new List<Master>();
-        Master master = new Master() { id = "1", name = "單位1" };
+        Master master = new Master() { id = "1", name = "單位1",professionId = 1,resourceHead = "AcquireChan_head", resourceModel = "AcquireChan" };
         master.cards = new List<Card>() { new Card { id = "1",mid = master.id, color = Card.CardColor.RED }, new Card { id = "2", mid = master.id, color = Card.CardColor.RED }, new Card { id = "3", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "4", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "5", mid = master.id, color = Card.CardColor.GREEN } };
         playerTeam.Add(master);
-        master = new Master() { id = "2", name = "單位2" };
+        master = new Master() { id = "2", name = "單位2", professionId = 2, resourceHead = "Muryotaisu_head", resourceModel = "AcquireChan" };
         master.cards = new List<Card>() { new Card { id = "11", mid = master.id, color = Card.CardColor.RED }, new Card { id = "12", mid = master.id, color = Card.CardColor.RED }, new Card { id = "13", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "14", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "15", mid = master.id, color = Card.CardColor.GREEN } };
         playerTeam.Add(master);
-        master = new Master() { id = "3", name = "單位3" };
+        master = new Master() { id = "3", name = "單位3", professionId = 3, resourceHead = "picoChan_head", resourceModel = "AcquireChan" };
         master.cards = new List<Card>() { new Card { id = "21", mid = master.id, color = Card.CardColor.RED }, new Card { id = "22", mid = master.id, color = Card.CardColor.RED }, new Card { id = "23", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "24", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "25", mid = master.id, color = Card.CardColor.GREEN } };
         playerTeam.Add(master);
 
-        master = new Master() { id = "4", name = "單位4" };
+        master = new Master() { id = "4", name = "單位4", professionId = 4, resourceHead = "Sapphiart_head", resourceModel = "AcquireChan" };
         master.cards = new List<Card>() { new Card { id = "31", mid = master.id, color = Card.CardColor.RED }, new Card { id = "32", mid = master.id, color = Card.CardColor.RED }, new Card { id = "33", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "34", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "35", mid = master.id, color = Card.CardColor.GREEN } };
         playerTeam.Add(master);
-        master = new Master() { id = "5", name = "單位5" };
+        master = new Master() { id = "5", name = "單位5", professionId = 5, resourceHead = "StellarWitch_head", resourceModel = "AcquireChan" };
         master.cards = new List<Card>() { new Card { id = "41", mid = master.id, color = Card.CardColor.RED }, new Card { id = "42", mid = master.id, color = Card.CardColor.RED }, new Card { id = "43", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "44", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "45", mid = master.id, color = Card.CardColor.GREEN } };
         playerTeam.Add(master);
-        master = new Master() { id = "6", name = "單位6" };
+        master = new Master() { id = "6", name = "單位6", professionId = 6, resourceHead = "unitychan_head", resourceModel = "AcquireChan" };
         master.cards = new List<Card>() { new Card { id = "51", mid = master.id, color = Card.CardColor.RED }, new Card { id = "52", mid = master.id, color = Card.CardColor.RED }, new Card { id = "53", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "54", mid = master.id, color = Card.CardColor.BULE }, new Card { id = "55", mid = master.id, color = Card.CardColor.GREEN } };
         playerTeam.Add(master);
 
@@ -973,9 +977,9 @@ public class BattleUnitTestCase
     public static Mission[] GetMission()
     {
         List<Mission> missions = new List<Mission>();
-        missions.Add(new Mission { enemys = new List<Master>() { new Master { id = "11", name = "敵方單位11" }, new Master { id = "12", name = "敵方單位12" }, new Master { id = "13", name = "敵方單位13" }, new Master { id = "13", name = "敵方單位14" } } });
-        missions.Add(new Mission { enemys = new List<Master>() { new Master { id = "21", name = "敵方單位21" }, new Master { id = "22", name = "敵方單位22" }, new Master { id = "23", name = "敵方單位23" } } });
-        missions.Add(new Mission { enemys = new List<Master>() { new Master { id = "31", name = "敵方單位31" }, new Master { id = "32", name = "敵方單位32" }, new Master { id = "33", name = "敵方單位33" } } });
+        missions.Add(new Mission { enemys = new List<Master>() { new Master { id = "11", name = "敵方單位11",professionId = 1 }, new Master { id = "12", name = "敵方單位12", professionId = 3 }, new Master { id = "13", name = "敵方單位13", professionId = 1 }, new Master { id = "13", name = "敵方單位14", professionId = 1 } } });
+        missions.Add(new Mission { enemys = new List<Master>() { new Master { id = "21", name = "敵方單位21", professionId = 1 }, new Master { id = "22", name = "敵方單位22", professionId = 5 }, new Master { id = "23", name = "敵方單位23", professionId = 1 } } });
+        missions.Add(new Mission { enemys = new List<Master>() { new Master { id = "31", name = "敵方單位31", professionId = 1 }, new Master { id = "32", name = "敵方單位32", professionId = 6 }, new Master { id = "33", name = "敵方單位33", professionId = 1 } } });
         return missions.ToArray();
     }
 }

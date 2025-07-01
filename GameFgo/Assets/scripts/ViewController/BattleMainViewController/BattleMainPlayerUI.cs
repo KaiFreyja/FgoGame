@@ -37,22 +37,24 @@ public class BattleMainPlayerUI : MonoBehaviour
     /// </summary>
     public Button[] btnSkills = null;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    /// <summary>
+    /// Ë˚é¶ödà éëêu
+    /// </summary>
+    /// <param name="player"></param>
+    public void ShowMaster(Master player)
     {
-        for (int i = 0; i < btnSkills.Length; i++)
+        if (player == null)
         {
-            int index = i;
-            btnSkills[i].onClick.AddListener(() =>
-            {
-                Debug.Log("skill : " + index);
-            });
+            return;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        imgHead.sprite = Resources.Load<Sprite>(Config.RESOURCE_HEAD_PATH + player.resourceHead);
+        imgIcon.sprite = Resources.Load<Sprite>(Config.RESOURCE_PROFESSION_PATH + player.professionId);
+
+        labName.text = player.name;
+        labHp.text = player.hp.ToString();
+        barHp.SetValue(player.hp, player.maxHp);
+        labNp.text = player.np + "%";
+        barNp.SetValue(player.np, 100);
     }
 }
