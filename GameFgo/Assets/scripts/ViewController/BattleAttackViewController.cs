@@ -34,6 +34,7 @@ public class BattleAttackViewController : ViewController
 
     public void showCards(Card[] cards, Master[] players)
     {
+
         selectCards = new Card[3];
         clearCards();
 
@@ -43,6 +44,11 @@ public class BattleAttackViewController : ViewController
             Master master = null;
             foreach (var a in players)
             {
+                if (a == null)
+                {
+                    continue;
+                }
+
                 if (a.id == card.mid)
                 {
                     master = a;

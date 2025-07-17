@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEngine.Rendering.GPUSort;
 
 public class BattleMainViewManager : MonoBehaviour
 {
@@ -12,15 +9,22 @@ public class BattleMainViewManager : MonoBehaviour
     BattleAttackViewController battleAttackViewController = null;
     LockViewController lockViewController = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    BattleScenceViewController battleScenceViewController = null;
     
     /// <summary>
     /// 單位目標
     /// </summary>
     int selectEnemy = 0;
 
+
+    Master[] players = new Master[3];
+    //取得敵方上場單位
+    Master[] enemys = new Master[3];
+
     void Start()
     {
         main = GetComponent<BattleMain>();
+        battleScenceViewController = GetComponent<BattleScenceViewController>();
 
         battleMainViewController = ViewController.GetViewController<BattleMainViewController>();
         battleAttackViewController = ViewController.GetViewController<BattleAttackViewController>();
@@ -38,15 +42,24 @@ public class BattleMainViewManager : MonoBehaviour
             lockViewController.show();
             switch (state)
             {
+                case BattleMain.BattleState.INIT_BATTLE:
+                    battleScenceViewController.LoadAllModelResource(main.GetAllPlayer());
+                    break;
+
                 case BattleMain.BattleState.INTO_ROUND:
                     int maxMissionsNum = main.GetMaxMissionsNum();
                     int nowMissionsNum = main.GetNowMissionsNum();
                     int nowRound = main.GetRoundNum();
                     ///取得我方上場單位
-                    Master[] players = main.GetCurrentPlayerMaster();
+                    players = main.GetCurrentPlayerMaster();
+                    players = new List<Master>(players).ToArray();
                     //取得敵方上場單位
-                    Master[] enemys = main.GetCurrentEnemyMaster();
-                    
+                    enemys = main.GetCurrentEnemyMaster();
+                    enemys = new List<Master>(enemys).ToArray();
+
+                    battleScenceViewController.LoadPlayerTeam(players);
+                    battleScenceViewController.LoadEnemyTeams(enemys);
+
                     if (enemys[selectEnemy] == null)
                     {
                         for (int i = 0; i < enemys.Length; i++)
@@ -80,14 +93,35 @@ public class BattleMainViewManager : MonoBehaviour
 
                 case BattleMain.BattleState.PLAYER_ACTION_ANIMATION:
                     Debug.Log("播放玩家動畫");
-                    isTiming = true;
                     actions = main.GetPlayerBattleAction();
+
+                    if (actions.Length == 0)
+                    {
+                        main.PlayerAnimationFin();
+                    }
+                    else
+                    {
+                        battleScenceViewController.PlayerAni(actions, players, enemys, () =>
+                        {
+                            main.PlayerAnimationFin();
+                        });
+                    }
                     break;
 
                 case BattleMain.BattleState.ENEMY_ACTION_ANIMATION:
                     Debug.Log("撥放敵方動畫");
-                    isTiming = true;
                     actions = main.GetEnemyBattleAction();
+                    if (actions.Length == 0)
+                    {
+                        main.EnemyAnimationFin();
+                    }
+                    else
+                    {
+                        battleScenceViewController.EnemyAni(actions, players, enemys, () =>
+                        {
+                            main.EnemyAnimationFin();
+                        });
+                    }
                     break;
             }
         };

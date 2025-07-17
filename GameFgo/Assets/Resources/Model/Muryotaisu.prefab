@@ -2344,6 +2344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8899611257563303031}
   - component: {fileID: 8828876421579021088}
+  - component: {fileID: 541321778378437360}
   m_Layer: 0
   m_Name: Muryotaisu
   m_TagString: Player
@@ -2385,7 +2386,7 @@ Animator:
   m_GameObject: {fileID: 7397256247282133203}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 14df923b9101bb14abca861595b99a5f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 3173dc991e314594abd6180b45c49c92, type: 2}
+  m_Controller: {fileID: 9100000, guid: f516d92f87f81b54d9bbc6a4acc1f2f2, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2397,6 +2398,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &541321778378437360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397256247282133203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462e968f5e28b0a4a88b374408b005fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  Target: {fileID: 0}
+  node: {fileID: 0}
 --- !u!1 &7510757186009693692
 GameObject:
   m_ObjectHideFlags: 0
