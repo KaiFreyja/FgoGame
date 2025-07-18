@@ -1,12 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
-using UnityEditor;
-using System.Reflection;
 using System;
-using static BattleMain;
 using Newtonsoft.Json.Linq;
-using UnityEngine.Timeline;
 
 public class BattleMain : MonoBehaviour
 {
